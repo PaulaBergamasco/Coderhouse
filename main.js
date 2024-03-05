@@ -1,40 +1,31 @@
-const usuario = prompt('Ingrese su nombre y apellido:');
+document.addEventListener('DOMContentLoaded', function () {
+    const specialtiesData = ['Dermatólogo', 'Dentista', 'Nutricionista', 'Gastroenterólogo', 'Laboratorio', 'Médico Clínico', 'Ginecólogo'];
 
-const saludo = (usuario) => console.log('Bienvenido al Turnero online ' + usuario);
+    const specialtiesList = document.getElementById('specialtiesList');
+    specialtiesData.forEach(specialty => {
+        const listItem = document.createElement('li');
+        listItem.textContent = specialty;
+        specialtiesList.appendChild(listItem);
 
-saludo(usuario);
+        const specialtySelect = document.getElementById('specialty');
+        const option = document.createElement('option');
+        option.value = specialty;
+        option.textContent = specialty;
+        specialtySelect.appendChild(option);
+    });
+});
 
-const servicios = ["Clínica Médica", "Ginecología", "Cardiología", "Dermatología", "Nutrición", "Laboratorio"];
+function scheduleAppointment() {
+    const name = document.getElementById('name').value;
+    const specialty = document.getElementById('specialty').value;
+    const date = document.getElementById('date').value;
 
-const servicioElegido = prompt("Elija un servicio:\n" + servicios.join("\n"));
-
-switch (servicioElegido) {
-    case "Clínica Médica":
-    case "Ginecología":
-    case "Cardiología":
-    case "Dermatología":
-    case "Nutrición":
-    case "Laboratorio":
-        console.log("Servicio seleccionado: " + servicioElegido);
-        break;
-    default:
-        alert("El servicio seleccionado no está disponible");
-        break;
-}
-
-const fechaActual = new Date().getTime();
-
-const fechaIngresadaString = prompt("Indique la fecha: dd/mm/aaaa");
-const fechaIngresada = Date.parse(fechaIngresadaString);
-
-const hora = parseInt(prompt("Indique la hora (8-18 hs):"));
-
-if (fechaIngresada > fechaActual) {
-    if (hora >= 8 && hora <= 18) {
-        console.log(usuario + ' ha agendado un turno para ' + servicioElegido + ' el día ' + fechaIngresadaString + ' a las ' + hora + ' horas.');
-    } else {
-        alert("Seleccione otro horario");
+    const currentDate = new Date();
+    const selectedDate = new Date(date);
+    if (selectedDate <= currentDate) {
+        alert('Por favor, elija una fecha posterior a la fecha actual.');
+        return;
     }
-} else {
-    alert("La fecha ingresada no es válida");
+
+    alert(`Turno solicitado para ${name} en la especialidad de ${specialty}, el ${date}.`);
 }

@@ -1,12 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RESERVA TU TURNO</title>
-    <script src= "main.js"></script>
+    <title>Turnero Médico Online</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
+    <header>
+        <h1>Turnero Médico Online</h1>
+    </header>
+
+    <main>
+        <section id="specialties">
+            <h2>Especialidades</h2>
+            <ul id="specialtiesList">
+            </ul>
+        </section>
+
+        <section id="appointmentForm">
+            <h2>Solicitar Turno</h2>
+            <form id="appointmentForm">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" required>
+
+                <label for="specialty">Especialidad:</label>
+                <select id="specialty" required>
+                </select>
+
+                <label for="date">Fecha:</label>
+                <input type="date" id="date" min="" required>
+                
+                <button type="button" onclick="scheduleAppointment()">Solicitar Turno</button>
+            </form>
+        </section>
+    </main>
+    <script src="main.js"></script>
 </body>
 </html>
+
